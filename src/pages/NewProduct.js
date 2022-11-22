@@ -61,21 +61,21 @@ function NewProduct() {
                 <Col md={6} className="new-product__form--container">
                     <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
                         <h1 className="mt-4">Cria um novo produto</h1>
-                        {/* {isSuccess && <Alert variant="success">Produto criado com sucesso!</Alert>} */}
+                        {isSuccess && <Alert variant="success">Produto criado com sucesso!</Alert>}
                         {isError && <Alert variant="danger">{error.data}</Alert>}
                         <Form.Group className="mb-3">
                             <Form.Label>Nome do produto</Form.Label>
-                            <Form.Control type="text" placeholder="Enter product name" value={name} required onChange={(e) => setName(e.target.value)} />
+                            <Form.Control type="text" placeholder="Digite o nome do produto" value={name} required onChange={(e) => setName(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
                             <Form.Label>Descrição do produto</Form.Label>
-                            <Form.Control as="textarea" placeholder="Product description" style={{ height: "100px" }} value={description} required onChange={(e) => setDescription(e.target.value)} />
+                            <Form.Control as="textarea" placeholder="Digite a descrição do produto" style={{ height: "100px" }} value={description} required onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
                             <Form.Label>Preço(R$)</Form.Label>
-                            <Form.Control type="number" placeholder="Price ($)" value={price} required onChange={(e) => setPrice(e.target.value)} />
+                            <Form.Control type="number" placeholder="Preço (R$)" value={price} required onChange={(e) => setPrice(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" onChange={(e) => setCategory(e.target.value)}>
