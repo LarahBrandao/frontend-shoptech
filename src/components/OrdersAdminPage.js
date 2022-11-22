@@ -12,6 +12,13 @@ function OrdersAdminPage() {
     const [orderToShow, setOrderToShow] = useState([]);
     const [show, setShow] = useState(false);
 
+    const numberFormat = (value) =>
+            new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format(value);
+
+
     const handleClose = () => setShow(false);
 
     function markShipped(orderId, ownerId) {
@@ -61,12 +68,12 @@ function OrdersAdminPage() {
                 <td>{_id}</td>
                 <td>{owner?.name}</td>
                 <td>{count}</td>
-                <td>{total}</td>
+                <td>{numberFormat(total)}</td>
                 <td>{address}</td>
                 <td>
                     {status === "processing" ? (
                         <Button size="sm" onClick={() => markShipped(_id, owner?._id)}>
-                            Marcar com enviado
+                            Marcar como enviado
                         </Button>
                     ) : (
                         <Badge bg="success">Enviado</Badge>
@@ -100,7 +107,7 @@ function OrdersAdminPage() {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Order details</Modal.Title>
+                    <Modal.Title>Detalhes do Pedido</Modal.Title>
                 </Modal.Header>
                 {orderToShow.map((order) => (
                     <div className="order-details__container d-flex justify-content-around py-2">
@@ -108,7 +115,7 @@ function OrdersAdminPage() {
                         <p>
                             <span>{order.count} x </span> {order.name}
                         </p>
-                        <p style={{width: '30%'}}>R${Number(order.price) * order.count}</p>
+                        <p style={{width: '30%'}}>{numberFormat(order.price * order.count)}</p>
                     </div>
                 ))}
                 <Modal.Footer>

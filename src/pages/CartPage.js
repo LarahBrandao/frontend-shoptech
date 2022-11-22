@@ -27,7 +27,7 @@ function CartPage() {
 
     function handleDecrease(product) {
         const quantity = user.cart.count;
-        if (quantity <= 0) return alert("Can't proceed");
+        if (quantity <= 1) return alert("Não pode deixar o carrinho em 0");
         decreaseCart(product);
     }
 
@@ -51,9 +51,9 @@ function CartPage() {
                                 <thead>
                                     <tr>
                                         <th>&nbsp;</th>
-                                        <th>Product</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
+                                        <th>Produto</th>
+                                        <th>Preço</th>
+                                        <th>Quantidade</th>
                                         <th>Subtotal</th>
                                     </tr>
                                 </thead>
@@ -66,7 +66,7 @@ function CartPage() {
                                                 {!isLoading && <i className="fa fa-times" style={{ marginRight: 10, cursor: "pointer" }} onClick={() => removeFromCart({ productId: item._id, price: item.price, userId: user._id })}></i>}
                                                 <img src={item.pictures[0].url} style={{ width: 100, height: 100, objectFit: "cover" }} />
                                             </td>
-                                            <td>${item.price}</td>
+                                            <td>{numberFormat(item.price)}</td>
                                             <td>
                                                 <span className="quantity-indicator">
                                                     <i className="fa fa-minus-circle" onClick={() => handleDecrease({ productId: item._id, price: item.price, userId: user._id })}></i>
@@ -74,7 +74,7 @@ function CartPage() {
                                                     <i className="fa fa-plus-circle" onClick={() => increaseCart({ productId: item._id, price: item.price, userId: user._id })}></i>
                                                 </span>
                                             </td>
-                                            <td>${item.price * user.cart[item._id]}</td>
+                                            <td>{numberFormat(item.price * user.cart[item._id])}</td>
                                         </tr>
                                     ))}
                                 </tbody>
