@@ -44,7 +44,7 @@ function EditProductPage() {
     function handleSubmit(e) {
         e.preventDefault();
         if (!name || !description || !price || !category || !images.length) {
-            return alert("Please fill out all the fields");
+            return alert("Por favor preencha todos os campos!");
         }
         updateProduct({ id, name, description, price, category, images }).then(({ data }) => {
             if (data.length > 0) {
@@ -75,7 +75,7 @@ function EditProductPage() {
             <Row>
                 <Col md={6} className="new-product__form--container">
                     <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
-                        <h1 className="mt-4">Edit product</h1>
+                        <h1 className="mt-4">Editar produto</h1>
                         {isSuccess && <Alert variant="success">Produto atualizado com sucesso!</Alert>}
                         {isError && <Alert variant="danger">{error.data}</Alert>}
                         <Form.Group className="mb-3">
